@@ -1,7 +1,16 @@
 package com.tutorial.apidemo.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 //POJO = Plain Object Java Object
+@Entity  //Java hiểu đây là 1 thực thể => nó sẽ tìm đến khóa chính primary key
 public class Product {
+    //This is "primary key"
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO) /* Dùng GenerateValue để tạo ra một strategy, trong đó sẽ  tạo ra 1 kiểu , tự động, => đây là trường id, là trường khóa chính, và tự sinh */
     private Long id;
     private String productName;
     private int year;
@@ -11,8 +20,7 @@ public class Product {
     //default constructor
     public Product() {}
 
-    public Product(Long id, String productName, int year, Double price, String url) {
-        this.id = id;
+    public Product(String productName, int year, Double price, String url) {
         this.productName = productName;
         this.year = year;
         this.price = price;
