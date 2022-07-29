@@ -14,15 +14,15 @@ public class Database {
     //logger
     private static final Logger logger = LoggerFactory.getLogger(Database.class); /* sẽ log ra chi tiết nằm ở class nào, hay hơn System.out.println */
     @Bean
-    CommandLineRunner initDatabase(ProductRepository productRepository) { 
-        return new CommandLineRunner() { /*CommandLineRunner là 1 interface, và dòng code này tạo ra một object để thực thi interface đó */
+    CommandLineRunner initDatabase(ProductRepository productRepository) {
+        return new CommandLineRunner() {
             @Override
             public void run(String... args) throws Exception {
-                Product productA = new Product("Macbook pro 16 inch", 2020, 2400.0, "");
-                Product productB = new Product("Ipad air green", 2021, 599.0, "");
-                logger.info("insert data: " + productRepository.save(productA)); //hàm save sẽ đưa bản ghi productA vào db
-                logger.info("insert data: " + productRepository.save(productB)); //hàm save sẽ đưa bản ghi productB vào db
-            } 
+                Product productA = new Product("MacBook Pro 15", 2020,2200.0, "");
+                Product productB = new Product("iPad Air Green", 2021,599.0,"");
+                logger.info("insert data: "+productRepository.save(productA));
+                logger.info("insert data: "+productRepository.save(productB));
+            }
         };
     }
 }
