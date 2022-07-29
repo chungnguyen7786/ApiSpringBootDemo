@@ -54,4 +54,24 @@ public class ProductController {
                 new ResponseObject("success", "Insert Product successfully", repository.save(newProduct))
         );
     }
+
+    //Update or insert => upsert : update if found, otherwise insert
+    @PutMapping("/{id}")
+    ResponseEntity<ResponseObject> updateProduct(@RequestBody Product newProdcut, @PathVariable Long id) {
+        Product updatedProduct =  repository.findById(id)
+                .map(product -> {
+                    product.setProductName(newProdcut.getProductName());
+                    product.setYear(newProdcut.getYear());
+                    product.setPrice(newProdcut.getPrice());
+                    product.setUrl(newProdcut.getUrl());
+                    return repository.save(product);
+                }).orElseGet(() -> {
+                    newProdcut.setId(id);
+                    return repository.save(newProdcut);
+                });
+        return ResponseEntity.status(HttpStatus.OK).body(
+                new ResponseObject("success", "Update Product successfully", updatedProduct)
+        );
+    }
+
 }
