@@ -74,4 +74,18 @@ public class ProductController {
         );
     }
 
+    //Delete a Product => DELETE method
+    @DeleteMapping("/{id}")
+    ResponseEntity<ResponseObject> deleteProduct(@PathVariable Long id) {
+        boolean exists = repository.existsById(id);
+        if(exists) {
+            repository.deleteById(id);
+            return ResponseEntity.status(HttpStatus.OK).body(
+                    new ResponseObject("Success", "Delete product successfully", "")
+            );
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                new ResponseObject("failed", "Cannot find product to delete", "")
+        );
+    }
 }
