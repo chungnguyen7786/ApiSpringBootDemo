@@ -9,6 +9,23 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+//Now connect with mysql using JPA
+/*
+
+\including create and pull the image of container named mysql-spring-boot-tutorial, --rm mean: when you finish and shutdown container=> delele the data
+docker run -d --rm --name mysql
+-e MYSQL_ROOT_PASSWORD=123456@123456 \ -e mean environment variable
+-e MYSQL_USER=chungnguyen7786 \
+-e MYSQL_PASSWORD=123456@123456 \
+-e MYSQL_DATABASE=mysql \
+-p 3306:3306 \mapping: 3306 is port of localhost, that map with the port 3306 of container
+--volume mysql-volume:/var/lib/mysql \
+mysql:latest  \latest version
+
+mysql -h localhost -P 3306 --protocol=tcp -u chungnguyen7786 -p
+
+* */
+
 @Configuration
 public class Database {
     //logger
